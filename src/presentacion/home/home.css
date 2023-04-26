@@ -1,0 +1,21 @@
+.header {
+	text-align: center;
+}
+
+.section-main {
+	display: flex;
+	justify-content: space-around;
+}
+
+.button {
+	font-size: 1.5rem;
+	padding: 1.5rem;
+	border: 2px solid;
+	border-radius: 10px 0px 10px 0px;
+	background-color: rgb(255 255 255 / 87%);
+}
+
+.button:hover {
+	border-color: #9499f8;
+	cursor: pointer;
+}
