@@ -3,8 +3,8 @@
 	line-height: 1.5;
 	font-weight: 400;
 
-	color: rgba(255, 255, 255, 0.87);
-	background-color: #313131;
+	color: hsla(0, 0%, 0%, 0.8);
+	background-color: rgb(255, 255, 255);
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -23,4 +23,35 @@ body {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+}
+
+.header {
+	text-align: center;
+	font-size: 1.2rem;
+}
+
+.buttons {
+	display: flex;
+	justify-content: space-around;
+}
+
+.button {
+	padding: 2rem;
+	font-size: 1.2rem;
+	border-radius: 10px 0px;
+}
+
+.button:hover {
+	border-width: 2px;
+	border-color: rgb(25, 0, 255);
+	color: rgb(25, 0, 255);
+	cursor: pointer;
+}
+
+.data {
+	background-color: rgb(39, 43, 51);
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	max-width: 1920px;
 }

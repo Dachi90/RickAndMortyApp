@@ -1,0 +1,37 @@
+.characterCard {
+	display: flex;
+	border-radius: 0.5rem;
+	background-color: rgb(60, 62, 68);
+	margin: 0.75rem;
+	width: 600px;
+	height: 220px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px;
+}
+
+.buttonsPagination {
+	width: 80%;
+	margin-bottom: 0.5rem;
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.buttonsPagination button {
+	font-size: 1.1rem;
+	cursor: pointer;
+	padding: 0.5rem;
+	background-color: rgb(60, 62, 68);
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px;
+}
+
+.buttonsPagination button:hover {
+	color: white;
+}
+
+@media (max-width: 650px) {
+	.characterCard {
+		flex-direction: column;
+		height: initial;
+		width: 80%;
+	}
+}
