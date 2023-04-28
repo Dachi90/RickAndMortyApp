@@ -6,10 +6,17 @@ const charactersFetch = async (url = 'https://rickandmortyapi.com/api/character'
 	return data;
 };
 
+const characterOnEpisodesFetch = async (character) => {
+	const episode = await fetch(character.episode[0]);
+	const episodeResults = await episode.json();
+	const episodeName = await episodeResults.name;
+	return episodeName;
+};
+
 export const characterCard = async (element) => {
 	const data = await charactersFetch();
 
-	data.results.forEach((character) => {
+	data.results.forEach(async (character) => {
 		const $Card = document.createElement('article');
 		$Card.classList.add('characterCard');
 
@@ -21,7 +28,7 @@ export const characterCard = async (element) => {
 		$Data.classList.add('dataCard');
 		$Data.innerHTML = `
     <div>
-      <p>${character.name}</p>
+      <h3>${character.name}</h3>
       <p>${character.status} - ${character.species}</p>
     </div>
     <div>
@@ -30,14 +37,16 @@ export const characterCard = async (element) => {
     </div>
     <div>
       <p>First seen in:</p>
-      <p></p>
+      <p>${await characterOnEpisodesFetch(character)}</p>
     </div>
     `;
 
 		$Card.append($Image, $Data);
 		element.append($Card);
 	});
+};
 
+export const PaginationButtons = (element) => {
 	const $ButtonsPagination = document.createElement('div');
 	$ButtonsPagination.classList.add('buttonsPagination');
 

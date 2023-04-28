@@ -1,9 +1,9 @@
-import { characterCard } from './src/presentacion/characters/character';
+import { PaginationButtons, characterCard } from './src/presentacion/characters/character';
 import './style.css';
 
 document.querySelector('#app').innerHTML = `
   <header class="header">
-    <h1>Rick And Morty App</h1>
+    <h1>The Rick And Morty App</h1>
   </header>
 
   <section class="buttons">
@@ -24,4 +24,5 @@ const $CharacterButton = document.querySelector('#characterButton');
 
 $CharacterButton.addEventListener('click', () => {
 	characterCard($Element);
+	PaginationButtons($Element);
 });

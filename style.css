@@ -27,7 +27,12 @@ body {
 
 .header {
 	text-align: center;
-	font-size: 1.2rem;
+	font-size: 2.5rem;
+}
+
+.header h1 {
+	margin: 0;
+	padding: 2rem;
 }
 
 .buttons {
@@ -54,4 +59,5 @@ body {
 	justify-content: center;
 	flex-wrap: wrap;
 	max-width: 1920px;
+	flex: 1 1 auto;
 }
