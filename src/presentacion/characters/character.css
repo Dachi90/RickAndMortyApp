@@ -26,6 +26,16 @@
 	margin: 0px;
 }
 
+.status {
+	display: flex;
+	align-items: center;
+}
+.status span {
+	color: green;
+	font-size: 2rem;
+	margin-bottom: 0.2rem;
+}
+
 .buttonsPagination {
 	width: 80%;
 	margin-bottom: 0.5rem;

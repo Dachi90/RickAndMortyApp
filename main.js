@@ -1,4 +1,4 @@
-import { PaginationButtons, characterCard } from './src/presentacion/characters/character';
+import { characterCard } from './src/presentacion/characters/character';
 import './style.css';
 
 document.querySelector('#app').innerHTML = `
@@ -18,11 +18,6 @@ document.querySelector('#app').innerHTML = `
 const $Element = document.querySelector('.data');
 const $CharacterButton = document.querySelector('#characterButton');
 
-// document.addEventListener('DOMContentLoaded', () => {
-// 	characterCard($Element);
-// });
-
 $CharacterButton.addEventListener('click', () => {
 	characterCard($Element);
-	PaginationButtons($Element);
 });
