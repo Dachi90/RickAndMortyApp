@@ -26,12 +26,14 @@ const characterOnEpisodesFetch = async (character) => {
  * Función para generar las Card de cada personaje
  * @param {HTMLElement} element Elemento HTML donde se pintará la card de cada personaje
  */
-export const characterCard = async (element) => {
+export const characterCard = async (element, data) => {
 	try {
 		// Agregar indicador de carga
 		element.innerHTML = '<p>Cargando...</p>';
 
-		const data = await charactersFetch();
+		if (!data) {
+			data = await charactersFetch();
+		}
 
 		element.innerHTML = '';
 
@@ -45,43 +47,78 @@ export const characterCard = async (element) => {
 
 			const $Data = document.createElement('div');
 			$Data.classList.add('dataCard');
+
+			const $Circle = document.createElement('span');
+			$Circle.classList.add('circle');
+
+			const status = character.status;
+
+			if (status === 'Alive') {
+				$Circle.classList.add('alive');
+			} else if (status === 'Dead') {
+				$Circle.classList.add('dead');
+			} else {
+				$Circle.classList.add('unknown');
+			}
+
 			$Data.innerHTML = `
 				<div>
 					<h3>${character.name}</h3>
-					<p class="status"><span>&#8226;</span>${character.status} - ${character.species}</p>
+					<p class="status">${$Circle.outerHTML}${status} - ${character.species}</p>
 				</div>
 				<div>
-					<p>Last known location:</p>
+					<p class="semi-title">Last known location:</p>
 					<p>${character.location.name}</p>
 				</div>
 				<div>
-					<p>First seen in:</p>
+					<p class="semi-title">First seen in:</p>
 					<p>${await characterOnEpisodesFetch(character)}</p>
 				</div>
 			`;
-
 			$Card.append($Image, $Data);
 			element.append($Card);
 		}
 
-		PaginationButtons(element);
+		PaginationButtons(element, data);
 	} catch (error) {
 		// Mostrar mensaje de error en caso de que la solicitud falle
 		element.innerHTML = `<p>Error al cargar los personajes: ${error.message}</p>`;
 	}
 };
 
-export const PaginationButtons = (element) => {
+/**
+ * Función para añadir los botones de paginación y la funcionalidad de paginación.
+ * @param {HTMLElement} element Elemento HTML donde se añadirán los botones de paginación
+ * @param {JSON} data Objeto tipo JSON con la información de los personajes y de la petición
+ */
+const PaginationButtons = (element, data) => {
 	const $ButtonsPagination = document.createElement('div');
 	$ButtonsPagination.classList.add('buttonsPagination');
 
 	const $ButtonPrev = document.createElement('button');
-	$ButtonPrev.innerText = '<-- Back';
+	$ButtonPrev.innerHTML = '&#8678;';
 
 	const $ButtonNext = document.createElement('button');
-	$ButtonNext.innerText = 'Next -->';
+	$ButtonNext.innerHTML = '&#8680;';
 
 	$ButtonsPagination.append($ButtonPrev, $ButtonNext);
 
 	element.append($ButtonsPagination);
+
+	if (data.info.prev === null) {
+		$ButtonPrev.setAttribute('disabled', 'true');
+	}
+	if (data.info.next === null) {
+		$ButtonNext.setAttribute('disabled', 'true');
+	}
+
+	$ButtonPrev.addEventListener('click', async () => {
+		const newData = await charactersFetch(data.info.prev);
+		characterCard(element, newData);
+	});
+
+	$ButtonNext.addEventListener('click', async () => {
+		const newData = await charactersFetch(data.info.next);
+		characterCard(element, newData);
+	});
 };
