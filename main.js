@@ -1,4 +1,5 @@
 import { characterCard } from './src/presentacion/characters/character';
+import { locationCard } from './src/presentacion/locations/locations';
 import './style.css';
 
 document.querySelector('#app').innerHTML = `
@@ -8,7 +9,7 @@ document.querySelector('#app').innerHTML = `
 
   <section class="buttons">
     <button class="button" id="characterButton">Character</button>
-    <button class="button">Location</button>
+    <button class="button" id="locationButton">Location</button>
     <button class="button">Episodes</button>
   </section>
 
@@ -17,7 +18,12 @@ document.querySelector('#app').innerHTML = `
 
 const $Element = document.querySelector('.data');
 const $CharacterButton = document.querySelector('#characterButton');
+const $LocationButton = document.querySelector('#locationButton');
 
 $CharacterButton.addEventListener('click', () => {
 	characterCard($Element);
+});
+
+$LocationButton.addEventListener('click', () => {
+	locationCard($Element);
 });

@@ -81,7 +81,6 @@ export const characterCard = async (element, data) => {
 
 		PaginationButtons(element, data);
 	} catch (error) {
-		// Mostrar mensaje de error en caso de que la solicitud falle
 		element.innerHTML = `<p>Error al cargar los personajes: ${error.message}</p>`;
 	}
 };
