@@ -1,10 +1,11 @@
+import { PaginationButtons } from '../pagination/pagination';
 import './character.css';
 /**
  * Función para hacer la petición de los personajes.
  * @param {String} url url a la que se quiere hacer la petición.
  * @returns json con la data requerida.
  */
-const charactersFetch = async (url = 'https://rickandmortyapi.com/api/character') => {
+export const charactersFetch = async (url = 'https://rickandmortyapi.com/api/character') => {
 	const response = await fetch(url);
 	const data = await response.json();
 	return data;
@@ -79,45 +80,8 @@ export const characterCard = async (element, data) => {
 			element.append($Card);
 		}
 
-		PaginationButtons(element, data);
+		PaginationButtons(characterCard, element, data);
 	} catch (error) {
 		element.innerHTML = `<p>Error al cargar los personajes: ${error.message}</p>`;
 	}
-};
-
-/**
- * Función para añadir los botones de paginación y la funcionalidad de paginación.
- * @param {HTMLElement} element Elemento HTML donde se añadirán los botones de paginación
- * @param {JSON} data Objeto tipo JSON con la información de los personajes y de la petición
- */
-const PaginationButtons = (element, data) => {
-	const $ButtonsPagination = document.createElement('div');
-	$ButtonsPagination.classList.add('buttonsPagination');
-
-	const $ButtonPrev = document.createElement('button');
-	$ButtonPrev.innerHTML = '&#8678;';
-
-	const $ButtonNext = document.createElement('button');
-	$ButtonNext.innerHTML = '&#8680;';
-
-	$ButtonsPagination.append($ButtonPrev, $ButtonNext);
-
-	element.append($ButtonsPagination);
-
-	if (data.info.prev === null) {
-		$ButtonPrev.setAttribute('disabled', 'true');
-	}
-	if (data.info.next === null) {
-		$ButtonNext.setAttribute('disabled', 'true');
-	}
-
-	$ButtonPrev.addEventListener('click', async () => {
-		const newData = await charactersFetch(data.info.prev);
-		characterCard(element, newData);
-	});
-
-	$ButtonNext.addEventListener('click', async () => {
-		const newData = await charactersFetch(data.info.next);
-		characterCard(element, newData);
-	});
 };

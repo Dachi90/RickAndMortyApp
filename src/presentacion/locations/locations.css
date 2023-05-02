@@ -7,6 +7,7 @@
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px;
 	padding: 5px;
 	color: white;
+	pointer-events: none;
 }
 
 .location-title {
@@ -16,6 +17,8 @@
 .location-data {
 	display: flex;
 	gap: 10px;
+	font-size: 1rem;
+	font-weight: 500;
 }
 
 .location-data p {

@@ -1,0 +1,22 @@
+.buttonsPagination {
+	width: 80%;
+	margin-bottom: 0.5rem;
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.buttonsPagination button {
+	padding: 0.5rem 1rem;
+	font-size: 2rem;
+	font-weight: bolder;
+	border-radius: 10px 0px;
+	box-shadow: 3px 3px 10px 3px rgba(0, 0, 0, 0.67);
+	border-style: none;
+}
+
+.buttonsPagination button:hover:enabled {
+	background-color: rgb(255, 152, 0);
+	color: white;
+	cursor: pointer;
+}

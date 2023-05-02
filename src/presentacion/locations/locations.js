@@ -1,3 +1,5 @@
+import { characterCard } from '../characters/character';
+import { PaginationButtons } from '../pagination/pagination';
 import './locations.css';
 
 const locationsFetch = async (url = 'https://rickandmortyapi.com/api/location') => {
@@ -38,6 +40,7 @@ export const locationCard = async (element, data) => {
       `;
 			element.append($Card);
 		}
+		PaginationButtons(locationCard, element, data);
 	} catch (error) {
 		element.innerHTML = `<p>Error al cargar las localizaciones: ${error.message}</p>`;
 	}
