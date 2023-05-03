@@ -5,9 +5,15 @@ import './character.css';
  * @param {String} url url a la que se quiere hacer la petición.
  * @returns json con la data requerida.
  */
-export const charactersFetch = async (url = 'https://rickandmortyapi.com/api/character') => {
-	const response = await fetch(url);
+export const charactersFetch = async (url = 'https://rickandmortyapi.com/api/character', filter) => {
+	let response;
+	if (!filter) {
+		response = await fetch(url);
+	} else {
+		response = await fetch(`${url}/?name=${filter}`);
+	}
 	const data = await response.json();
+
 	return data;
 };
 
@@ -37,6 +43,11 @@ export const characterCard = async (element, data) => {
 		}
 
 		element.innerHTML = '';
+
+		const $Input = document.createElement('input');
+		$Input.classList.add('input-filter');
+		$Input.setAttribute('placeholder', 'You can filter by name');
+		element.append($Input);
 
 		for (const character of data.results) {
 			const $Card = document.createElement('article');
@@ -80,8 +91,21 @@ export const characterCard = async (element, data) => {
 			element.append($Card);
 		}
 
+		filterName($Input, element);
+
 		PaginationButtons(characterCard, element, data);
 	} catch (error) {
 		element.innerHTML = `<p>Error al cargar los personajes: ${error.message}</p>`;
 	}
+};
+
+const filterName = (input, element) => {
+	input.addEventListener('keyup', async (e) => {
+		if (e.key === 'Enter') {
+			const filteredData = await charactersFetch('https://rickandmortyapi.com/api/character', input.value);
+			if (filteredData.error) return;
+			console.log('caca');
+			characterCard(element, filteredData);
+		}
+	});
 };

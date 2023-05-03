@@ -1,4 +1,5 @@
 import { characterCard } from './src/presentacion/characters/character';
+import { episodeCard } from './src/presentacion/episodes/episodes';
 import { locationCard } from './src/presentacion/locations/locations';
 import './style.css';
 
@@ -10,7 +11,7 @@ document.querySelector('#app').innerHTML = `
   <section class="buttons">
     <button class="button" id="characterButton">Character</button>
     <button class="button" id="locationButton">Location</button>
-    <button class="button">Episodes</button>
+    <button class="button" id="episodesButton">Episodes</button>
   </section>
 
   <section class="data"> </section>
@@ -19,6 +20,7 @@ document.querySelector('#app').innerHTML = `
 const $Element = document.querySelector('.data');
 const $CharacterButton = document.querySelector('#characterButton');
 const $LocationButton = document.querySelector('#locationButton');
+const $EpisodesButton = document.querySelector('#episodesButton');
 
 $CharacterButton.addEventListener('click', () => {
 	characterCard($Element);
@@ -26,4 +28,8 @@ $CharacterButton.addEventListener('click', () => {
 
 $LocationButton.addEventListener('click', () => {
 	locationCard($Element);
+});
+
+$EpisodesButton.addEventListener('click', () => {
+	episodeCard($Element);
 });

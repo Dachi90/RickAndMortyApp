@@ -1,4 +1,3 @@
-import { characterCard } from '../characters/character';
 import { PaginationButtons } from '../pagination/pagination';
 import './locations.css';
 
@@ -23,19 +22,18 @@ export const locationCard = async (element, data) => {
 			$Card.classList.add('location-card');
 
 			$Card.innerHTML = `
-        <div class="location-title">
+        
           <h2>${location.name}</h2>
-        </div>
+        
         <div class="location-data">
-          <div class="location-data1"
+          
             <p><span>Id:</span> ${location.id}</p>
             <p><span>Type:</span> ${location.type}</p>
             <p><span>Dimensions:</span> ${location.dimension}</p>
-          </div>
-          <div class="location-data2">
+          
             <p><span>Number of residents:</span> ${location.residents.length}</p>
             <p><span>Created:</span> ${location.created}</p>
-           </div> 
+           
         </div>
       `;
 			element.append($Card);

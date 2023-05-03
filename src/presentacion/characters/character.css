@@ -1,9 +1,16 @@
+.input-filter {
+	margin: 1rem;
+	width: 40%;
+	height: 1.5rem;
+	padding: 0.5rem;
+	border-radius: 5px;
+}
+
 .characterCard {
 	display: flex;
 	gap: 10px;
 	border-radius: 0.5rem;
 	background-color: rgb(60, 62, 68);
-	margin: 0.75rem;
 	width: 600px;
 	height: 220px;
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px;
