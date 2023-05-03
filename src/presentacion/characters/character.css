@@ -1,9 +1,12 @@
 .input-filter {
 	margin: 1rem;
-	width: 40%;
+	width: 70%;
 	height: 1.5rem;
 	padding: 0.5rem;
 	border-radius: 5px;
+	font-weight: 900;
+	color: rgb(60, 62, 68);
+	font-size: 1.5rem;
 }
 
 .characterCard {

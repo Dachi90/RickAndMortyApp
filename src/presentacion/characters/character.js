@@ -104,7 +104,6 @@ const filterName = (input, element) => {
 		if (e.key === 'Enter') {
 			const filteredData = await charactersFetch('https://rickandmortyapi.com/api/character', input.value);
 			if (filteredData.error) return;
-			console.log('caca');
 			characterCard(element, filteredData);
 		}
 	});
